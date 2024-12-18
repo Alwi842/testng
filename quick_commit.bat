@@ -83,7 +83,7 @@ if errorlevel 1 (
 
 REM Commit changes
 echo commit the changes...
-git commit -m "%commit_message%" >nul 2>&1
+git commit -m "try" >nul 2>&1
 if errorlevel 1 (
     echo Commit failed. Ensure there are changes to commit.
     pause && exit /b
