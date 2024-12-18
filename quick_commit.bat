@@ -101,9 +101,8 @@ if %isOrigin%==0 (
 			echo Failed to remove the existing remote 'origin'. Please check manually.
 			pause && exit /b
 		)
-		
+		set init_origin=1
 	)
-	set init_origin=1
 )
 if %init_origin%==1 (
 	echo Adding the new remote 'origin'...
