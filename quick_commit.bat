@@ -94,8 +94,7 @@ REM Add remote origin
 echo configure remote origin...
 if %isOrigin%==0 (
 	set init_origin=1
-) 
-if %isOrigin%==1 (
+) else (
 	if %replace_origin%==1 (
 		echo Removing the existing remote 'origin'...
 		git remote remove origin >nul 2>&1
@@ -106,14 +105,7 @@ if %isOrigin%==1 (
 		set init_origin=1
 	)
 )
-if %init_origin%==1 (
-	echo Adding the new remote 'origin'...
-	git remote add origin "%link%" >nul 2>&1
-	if errorlevel 1 (
-		echo Failed to add the new remote 'origin'. Please check the link and try again.
-		pause && exit /b
-	)
-)
+
 pause
 REM Push changes
 echo pushing changes...
