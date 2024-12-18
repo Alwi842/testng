@@ -6,7 +6,7 @@ echo checking git...
 git --version >nul 2>&1
 if errorlevel 1 (
 	echo Git is not installed. Please install Git and try again.
-    exit /b
+    pause && exit /b
 )
 
 rem login username and email
@@ -14,12 +14,12 @@ echo login into username and email...
 git config --global user.name "Alwi842">nul 2>&1
 if errorlevel 1 (
     echo Failed to configure Git username.
-    exit /b
+    pause && exit /b
 )
 git config --global user.email "alwi.abdullah1221@gmail.com">nul 2>&1
 if errorlevel 1 (
     echo Failed to configure Git email.
-    exit /b
+    pause && exit /b
 )
 
 REM Check if the folder is already a Git repository
@@ -55,7 +55,7 @@ if %isOrigin%==1 (
 set /p link=Please enter the GitHub repository link: 
 if "%link%"=="" (
     echo Repository link cannot be empty. Please try again.
-    exit /b
+    pause && exit /b
 )
 
 :input2
@@ -70,7 +70,7 @@ if %skip_init%==0 (
 	git init -b main >nul 2>&1
 	if errorlevel 1 (
 		echo Failed to initialize Git repository.
-		exit /b
+		pause && exit /b
 	)
 )
 REM Add files to staging area
@@ -78,7 +78,7 @@ echo adding files...
 git add . >nul 2>&1
 if errorlevel 1 (
     echo Failed to add files to staging area.
-    exit /b
+    pause && exit /b
 )
 
 REM Commit changes
@@ -86,7 +86,7 @@ echo commit the changes...
 git commit -m "%commit_message%" >nul 2>&1
 if errorlevel 1 (
     echo Commit failed. Ensure there are changes to commit.
-    exit /b
+    pause && exit /b
 )
 
 REM Add remote origin
@@ -99,7 +99,7 @@ if %isOrigin%==0 (
 		git remote remove origin >nul 2>&1
 		if errorlevel 1 (
 			echo Failed to remove the existing remote 'origin'. Please check manually.
-			exit /b
+			pause && exit /b
 		)
 		
 	)
@@ -110,7 +110,7 @@ if %init_origin%==1 (
 	git remote add origin "%link%" >nul 2>&1
 	if errorlevel 1 (
 		echo Failed to add the new remote 'origin'. Please check the link and try again.
-		exit /b
+		pause && exit /b
 	)
 )
 
@@ -122,12 +122,12 @@ if errorlevel 1 (
     choice /m "Do you want to force push? (y/n)"
     if errorlevel 2 (
         echo Push canceled.
-        exit /b
+        pause && exit /b
     )
     git push --force origin main >nul 2>&1
     if errorlevel 1 (
         echo Force push failed. Please resolve issues manually.
-        exit /b
+        pause && exit /b
     )
 )
 echo Push successful!
