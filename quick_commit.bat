@@ -90,44 +90,6 @@ if errorlevel 1 (
 )
 
 REM Add remote origin
-echo configure remote origin...
-if %isOrigin%==0 (
-	set init_origin=1
-) else (
-	if %replace_origin%==1 (
-		echo Removing the existing remote 'origin'...
-		git remote remove origin >nul 2>&1
-		if errorlevel 1 (
-			echo Failed to remove the existing remote 'origin'. Please check manually.
-			pause && exit /b
-		)
-		set init_origin=1
-	)
-)
-if %init_origin%==1 (
-	echo Adding the new remote 'origin'...
-	git remote add origin "%link%" >nul 2>&1
-	if errorlevel 1 (
-		echo Failed to add the new remote 'origin'. Please check the link and try again.
-		pause && exit /b
-	)
-)
 
-REM Push changes
-echo pushing changes...
-git push origin main >nul 2>&1
-if errorlevel 1 (
-    echo Initial push failed. There may be conflicts.
-    choice /m "Do you want to force push? (y/n)"
-    if errorlevel 2 (
-        echo Push canceled.
-        pause && exit /b
-    )
-    git push --force origin main >nul 2>&1
-    if errorlevel 1 (
-        echo Force push failed. Please resolve issues manually.
-        pause && exit /b
-    )
-)
 echo Push successful!
 pause
