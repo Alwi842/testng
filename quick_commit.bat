@@ -114,7 +114,7 @@ if %init_origin%==1 (
 		pause && exit /b
 	)
 )
-pause
+
 REM Push changes
 echo pushing changes...
 git push origin main >nul 2>&1
