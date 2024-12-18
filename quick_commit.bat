@@ -1,5 +1,6 @@
 @echo off
 setlocal enabledelayedexpansion
+
 REM =============== INITIALIZING ===============
 echo =============== INITIALIZING ===============
 if not exist quick_commit.config.ini (
@@ -11,7 +12,6 @@ if not exist quick_commit.config.ini (
 	echo [Settings] > quick_commit.config.ini
 	echo username=!user! >> quick_commit.config.ini
 	echo email=!email! >> quick_commit.config.ini
-	pause
 ) else (
 	echo for edit the config check quick_commit.config.ini
 	set INI_PATH=quick_commit.config.ini
